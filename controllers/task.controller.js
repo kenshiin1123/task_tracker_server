@@ -5,7 +5,8 @@ import User from "../models/user.model.js";
 import Task from "../models/task.model.js";
 
 const getTasks = wrapAsync(async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
+
   if (!id) {
     throw new AppError("ID is required", 400);
   }
@@ -15,7 +16,11 @@ const getTasks = wrapAsync(async (req, res) => {
     throw new AppError("User not found!", 404);
   }
 
-  const tasks = user.tasks;
+  const tasks = await Promise.all(
+    user.tasks.map(async (taskId) => {
+      return await Task.findById(taskId);
+    })
+  );
 
   return res.status(200).json({
     message: "Successfully retrieved tasks",

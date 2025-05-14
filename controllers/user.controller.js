@@ -4,11 +4,17 @@ import User from "../models/user.model.js";
 
 const getUser = wrapAsync(async (req, res) => {
   const { id } = req.params;
+
   if (!id) {
     throw new AppError("ID is required", 400);
   }
 
-  const user = await User.findById(id);
+  const user = await User.findById(id)
+    .select("-passwordHash -__v -token -_id")
+    .populate({
+      path: "tasks",
+      select: "title description -_id",
+    });
   if (!user) {
     throw new AppError("User not found!", 404);
   }
