@@ -9,6 +9,7 @@ const userSchema = new Schema({
     required: true,
     type: String,
     unique: true,
+    lowercase: true,
   },
   passwordHash: {
     required: true,
@@ -20,6 +21,7 @@ const userSchema = new Schema({
       ref: "Task",
     },
   ],
+  token: [{ type: String }],
 });
 
 export default model("User", userSchema);
