@@ -2,13 +2,13 @@ import express from "express";
 const router = express.Router();
 
 import {
-  getUserTasks,
+  getTasks,
   addTask,
   updateTask,
   deleteTask,
-} from "../controllers/task.controller";
+} from "../controllers/task.controller.js";
 
-router.get("/:id/reminders", getUserTasks);
+router.get("/:id/reminders", getTasks);
 router.post("/:id/reminders", addTask);
 router.put("/:id/reminders/:taskId", updateTask);
 router.delete("/:id/reminders/:taskId", deleteTask);
