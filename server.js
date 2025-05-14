@@ -13,7 +13,6 @@ const app = express();
 app.use(express.json());
 
 // Routes
-
 app.get("/", (req, res) => {
   res.send(
     "<center style='margin-top:5rem;'> <h1>Task Tracker Server 🖥️</h1> </center>"
