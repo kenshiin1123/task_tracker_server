@@ -20,7 +20,7 @@ const taskSchema = new Schema(
       enum: ["work", "personal", "school"],
     },
     dueDate: {
-      type: Date,
+      type: String,
     },
   },
   {

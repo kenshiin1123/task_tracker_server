@@ -1,7 +1,6 @@
 import AppError from "../util/AppError.js";
 import wrapAsync from "../util/wrapAsync.js";
 import User from "../models/user.model.js";
-import Task from "../models/task.model.js";
 
 const getUser = wrapAsync(async (req, res) => {
   const { id } = req.params;
